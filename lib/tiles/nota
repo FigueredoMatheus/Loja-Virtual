@@ -1,0 +1,3 @@
+tile significa que a screen irá receber uma lista de itens, cada item é uma Tile. Logo, as tiles
+são Widgets genéricos para todos os itens recebendo epenas o parametro necessário com as informações
+de cada item.

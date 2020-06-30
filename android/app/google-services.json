@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "988199061071",
+    "firebase_url": "https://loja-virtual-2-66f6e.firebaseio.com",
+    "project_id": "loja-virtual-2-66f6e",
+    "storage_bucket": "loja-virtual-2-66f6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988199061071:android:7ef1bb089f5387c4008c3a",
+        "android_client_info": {
+          "package_name": "com.matheus.lojavirtual2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988199061071-00eq6l6dar7oivi73pclofpcc3bq3ff3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matheus.lojavirtual2",
+            "certificate_hash": "be174308993e2862c24bc0e219cd50292da5ca19"
+          }
+        },
+        {
+          "client_id": "988199061071-pkl7b12i1p4qgoqejm3g6rlgg162e5ft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgCIATk6WNggRv1bqLJUmhyEqWiTscr0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988199061071-pkl7b12i1p4qgoqejm3g6rlgg162e5ft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
