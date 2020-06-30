@@ -48,6 +48,7 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
         ],
       ),
       body: Observer(builder: (_) {
+        print('EnderecoEscolhidoo Carrinho: ${user.endereco.enderecoEscolhidoo}');
         if ((carrinhoMobx.getIsLoading) && (user.isLoggedIn)) {
           return Center(
             child: CircularProgressIndicator(),
@@ -78,7 +79,8 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
               CardPreco(() async {
                 //print('${user.enderecoCarrinhoIndex]}');
                 String pedidoId = await carrinhoMobx.finalizarPedido(
-                    user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]).then((pedidoId){
+                    user.endereco.enderecoEscolhidoo
+                    ).then((pedidoId){
                       user.pedidos.add(pedidoId);
                       return pedidoId;
                     });

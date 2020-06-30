@@ -93,7 +93,7 @@ class CardPreco extends StatelessWidget {
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                   onPressed:
-                      carrinho.pedidoValido && user.endereco.enderecoEscolhido
+                      carrinho.pedidoValido && user.endereco.enderecoEscolhidoo != null
                           ? buy
                           : null,
                 ),

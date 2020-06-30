@@ -46,10 +46,7 @@ class CardEndereco extends StatelessWidget {
         children: <Widget>[
           Observer(
             builder: (_) {
-              if (user.endereco.listEnderecos.isEmpty ||
-                  (!user.endereco.listEnderecos[0]['padrao'] &&
-                      user.endereco.enderecoCarrinhoIndex == -1)) {
-              //  user.endereco.enderecoEscolhido = false;
+              if (user.endereco.enderecoEscolhidoo == null) {
                 return SizedBox(
                   child: Column(
                     children: <Widget>[
@@ -64,7 +61,6 @@ class CardEndereco extends StatelessWidget {
                   ),
                 );
               }else {
-               // user.endereco.enderecoEscolhido = true;
                 return Container(
                   padding: EdgeInsets.only(left: 5),
                   width: 300,
@@ -74,37 +70,37 @@ class CardEndereco extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'Rua: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['rua']}'),
+                            'Rua: ${user.endereco.enderecoEscolhidoo['rua']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'Bairro: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['bairro']}'),
+                            'Bairro: ${user.endereco.enderecoEscolhidoo['bairro']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'Cidade: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['cidade']}'),
+                            'Cidade: ${user.endereco.enderecoEscolhidoo['cidade']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'Estado: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['estado']}'),
+                            'Estado: ${user.endereco.enderecoEscolhidoo['estado']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'Número: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['numero']}'),
+                            'Número: ${user.endereco.enderecoEscolhidoo['numero']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Text(
-                            'CEP: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['cep']}'),
+                            'CEP: ${user.endereco.enderecoEscolhidoo['cep']}'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 8.0),
                         child: Text(
-                            'Complemento: ${user.endereco.listEnderecos[user.endereco.enderecoCarrinhoIndex]['complemento']}'),
+                            'Complemento: ${user.endereco.enderecoEscolhidoo['complemento']}'),
                       ),
                       FlatButton(
                         padding: EdgeInsets.zero,

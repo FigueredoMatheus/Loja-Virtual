@@ -78,7 +78,7 @@ class EnderecoTile extends StatelessWidget {
             : FlatButton(
               padding: EdgeInsets.zero,
               onPressed: (){
-                 user.endereco.enderecoCarrinho(endereco);
+                 user.endereco.enderecoEscolhidoo = endereco;
                  Navigator.pop(context);
               },
               child: Text(

@@ -20,10 +20,7 @@ abstract class _EnderecoBase with Store {
       ObservableList<Map<dynamic, dynamic>>().asObservable();
 
   @observable
-  int enderecoCarrinhoIndex = -1;
-
-  @observable
-  bool enderecoEscolhido = false;
+  Map<dynamic, dynamic> enderecoEscolhidoo;
 
   @action
   Future<void> _loadEnderecos(FirebaseUser user) async {
@@ -35,95 +32,31 @@ abstract class _EnderecoBase with Store {
     for (Map<dynamic, dynamic> endereco in doc.data['enderecos']) {
       listEnderecos.add(endereco);
       if (endereco['padrao']) {
-        enderecoCarrinhoIndex = 0;
-        enderecoEscolhido = true;
+        enderecoEscolhidoo = endereco;
       }
     }
   }
 
   @action
   Future<void> excluirEndereco(Map<dynamic, dynamic> endereco) async {
-    for (int i = 0; i < listEnderecos.length; i++) {
-      if (endereco == listEnderecos[i]) {
-        listEnderecos.remove(endereco);
-        if (i == enderecoCarrinhoIndex) {
-          if (listEnderecos[0]['padrao']) {
-            enderecoCarrinhoIndex = 0;
+    listEnderecos.remove(endereco);
 
-          } else {
-            resetEnderecoCarrinho();
-            enderecoEscolhido = false;
-
-          }
-        }
-
-        if(i < enderecoCarrinhoIndex){
-          enderecoCarrinhoIndex--;
-
-        }
-        break;
+    if(endereco == enderecoEscolhidoo){
+      if(listEnderecos.isNotEmpty && listEnderecos[0]['padrao']){
+        enderecoEscolhidoo = listEnderecos[0];
+      }else{
+        enderecoEscolhidoo = null;
       }
+
     }
 
     Firestore.instance.collection('users').document(user.uid).updateData({
       'enderecos': FieldValue.arrayRemove([endereco])
     });
+
   }
 
-  @action
-  void editarEndereco(Map<dynamic, dynamic> endereco) {
-    for (int i = 0; i < listEnderecos.length; i++) {
-      if (listEnderecos[i] == endereco) {
-        listEnderecos.removeAt(i);
-        listEnderecos.insert(i, endereco);
-      }
-    }
-
-    Firestore.instance
-        .collection('users')
-        .document(user.uid)
-        .updateData({'enderecos': listEnderecos});
-  }
-
-  @action
-  void definirPadrao(Map<dynamic, dynamic> endereco) {
-    if (listEnderecos[0]['padrao']) listEnderecos[0]['padrao'] = false;
-
-    endereco['padrao'] = true;
-    enderecoCarrinhoIndex = 0;
-    enderecoEscolhido = true;
-
-    listEnderecos.remove(endereco);
-    listEnderecos.insert(0, endereco);
-
-    Firestore.instance
-        .collection('users')
-        .document(user.uid)
-        .updateData({'enderecos': listEnderecos});
-  }
-
-  @action
-  void removerPadrao(Map<dynamic, dynamic> endereco) {
-    if (enderecoCarrinhoIndex == 0) enderecoEscolhido = false;
-
-    endereco['padrao'] = false;
-
-    listEnderecos.remove(endereco);
-    listEnderecos.insert(0, endereco);
-
-    Firestore.instance
-        .collection('users')
-        .document(user.uid)
-        .updateData({'enderecos': listEnderecos});
-  }
-
-  @action
-  void resetEnderecoCarrinho() {
-    enderecoCarrinhoIndex = -1;
-    if (!listEnderecos[0]['padrao']) enderecoEscolhido = false;
-  }
-
-  @action
+   @action
   void adicionarEndereco(
       {@required String rua,
       @required String bairro,
@@ -156,13 +89,72 @@ abstract class _EnderecoBase with Store {
   }
 
   @action
-  enderecoCarrinho(Map<dynamic, dynamic> endereco) {
+  void editarEndereco(Map<dynamic, dynamic> endereco) {
     for (int i = 0; i < listEnderecos.length; i++) {
-      if (endereco == listEnderecos[i]) {
-        enderecoCarrinhoIndex = i;
-        enderecoEscolhido = true;
-        break;
+      if (listEnderecos[i] == endereco) {
+        listEnderecos.removeAt(i);
+        listEnderecos.insert(i, endereco);
       }
     }
+
+    Firestore.instance
+        .collection('users')
+        .document(user.uid)
+        .updateData({'enderecos': listEnderecos});
   }
+
+  @action
+  void definirPadrao(Map<dynamic, dynamic> endereco) {
+    print('Definir Padrão: $endereco');
+    print('Definir Padrão (escolhidoo): $enderecoEscolhidoo');
+//TODO quando estiver adicionando um endereco e marcar como padrão
+    listEnderecos.remove(endereco);
+
+    endereco['padrao'] = true;
+
+    if (listEnderecos[0]['padrao']){
+      if(listEnderecos[0] == enderecoEscolhidoo)
+        enderecoEscolhidoo = endereco;
+
+      listEnderecos[0]['padrao'] = false;
+    }else if(enderecoEscolhidoo == null){
+      enderecoEscolhidoo = endereco;
+    }
+  
+    listEnderecos.insert(0, endereco);
+
+    Firestore.instance
+        .collection('users')
+        .document(user.uid)
+        .updateData({'enderecos': listEnderecos});
+  }
+
+  @action
+  void removerPadrao(Map<dynamic, dynamic> endereco) {
+    print('Remover Padrão: $endereco');
+    print('Remover Padrão (escolhidoo): $enderecoEscolhidoo');
+
+    if(endereco == enderecoEscolhidoo)
+      enderecoEscolhidoo = null;
+
+    listEnderecos.remove(endereco);
+
+    endereco['padrao'] = false;
+
+    listEnderecos.insert(0, endereco);
+
+    Firestore.instance
+        .collection('users')
+        .document(user.uid)
+        .updateData({'enderecos': listEnderecos});
+  }
+
+  @action
+  void resetEnderecoCarrinho() {
+    if (listEnderecos[0]['padrao']) 
+      enderecoEscolhidoo = listEnderecos[0];
+    else
+      enderecoEscolhidoo = null;
+  }
+
 }

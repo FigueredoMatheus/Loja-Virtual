@@ -24,35 +24,19 @@ mixin _$Endereco on _EnderecoBase, Store {
     });
   }
 
-  final _$enderecoCarrinhoIndexAtom =
-      Atom(name: '_EnderecoBase.enderecoCarrinhoIndex');
+  final _$enderecoEscolhidooAtom =
+      Atom(name: '_EnderecoBase.enderecoEscolhidoo');
 
   @override
-  int get enderecoCarrinhoIndex {
-    _$enderecoCarrinhoIndexAtom.reportRead();
-    return super.enderecoCarrinhoIndex;
+  Map<dynamic, dynamic> get enderecoEscolhidoo {
+    _$enderecoEscolhidooAtom.reportRead();
+    return super.enderecoEscolhidoo;
   }
 
   @override
-  set enderecoCarrinhoIndex(int value) {
-    _$enderecoCarrinhoIndexAtom.reportWrite(value, super.enderecoCarrinhoIndex,
-        () {
-      super.enderecoCarrinhoIndex = value;
-    });
-  }
-
-  final _$enderecoEscolhidoAtom = Atom(name: '_EnderecoBase.enderecoEscolhido');
-
-  @override
-  bool get enderecoEscolhido {
-    _$enderecoEscolhidoAtom.reportRead();
-    return super.enderecoEscolhido;
-  }
-
-  @override
-  set enderecoEscolhido(bool value) {
-    _$enderecoEscolhidoAtom.reportWrite(value, super.enderecoEscolhido, () {
-      super.enderecoEscolhido = value;
+  set enderecoEscolhidoo(Map<dynamic, dynamic> value) {
+    _$enderecoEscolhidooAtom.reportWrite(value, super.enderecoEscolhidoo, () {
+      super.enderecoEscolhidoo = value;
     });
   }
 
@@ -75,6 +59,33 @@ mixin _$Endereco on _EnderecoBase, Store {
 
   final _$_EnderecoBaseActionController =
       ActionController(name: '_EnderecoBase');
+
+  @override
+  void adicionarEndereco(
+      {@required String rua,
+      @required String bairro,
+      @required String cidade,
+      @required String estado,
+      @required String numero,
+      @required String cep,
+      @required bool padrao,
+      String complemento}) {
+    final _$actionInfo = _$_EnderecoBaseActionController.startAction(
+        name: '_EnderecoBase.adicionarEndereco');
+    try {
+      return super.adicionarEndereco(
+          rua: rua,
+          bairro: bairro,
+          cidade: cidade,
+          estado: estado,
+          numero: numero,
+          cep: cep,
+          padrao: padrao,
+          complemento: complemento);
+    } finally {
+      _$_EnderecoBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void editarEndereco(Map<dynamic, dynamic> endereco) {
@@ -121,49 +132,10 @@ mixin _$Endereco on _EnderecoBase, Store {
   }
 
   @override
-  void adicionarEndereco(
-      {@required String rua,
-      @required String bairro,
-      @required String cidade,
-      @required String estado,
-      @required String numero,
-      @required String cep,
-      @required bool padrao,
-      String complemento}) {
-    final _$actionInfo = _$_EnderecoBaseActionController.startAction(
-        name: '_EnderecoBase.adicionarEndereco');
-    try {
-      return super.adicionarEndereco(
-          rua: rua,
-          bairro: bairro,
-          cidade: cidade,
-          estado: estado,
-          numero: numero,
-          cep: cep,
-          padrao: padrao,
-          complemento: complemento);
-    } finally {
-      _$_EnderecoBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic enderecoCarrinho(Map<dynamic, dynamic> endereco) {
-    final _$actionInfo = _$_EnderecoBaseActionController.startAction(
-        name: '_EnderecoBase.enderecoCarrinho');
-    try {
-      return super.enderecoCarrinho(endereco);
-    } finally {
-      _$_EnderecoBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 listEnderecos: ${listEnderecos},
-enderecoCarrinhoIndex: ${enderecoCarrinhoIndex},
-enderecoEscolhido: ${enderecoEscolhido}
+enderecoEscolhidoo: ${enderecoEscolhidoo}
     ''';
   }
 }
