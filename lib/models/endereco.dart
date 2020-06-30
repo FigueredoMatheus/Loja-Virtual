@@ -81,8 +81,8 @@ abstract class _EnderecoBase with Store {
 
     listEnderecos.add(endereco);
 
-    if (padrao) definirPadrao(endereco);
-
+    if(padrao)definirPadrao(endereco);
+  
     Firestore.instance.collection('users').document(user.uid).updateData({
       'enderecos': FieldValue.arrayUnion([endereco])
     });
@@ -105,22 +105,23 @@ abstract class _EnderecoBase with Store {
 
   @action
   void definirPadrao(Map<dynamic, dynamic> endereco) {
-    print('Definir Padrão: $endereco');
-    print('Definir Padrão (escolhidoo): $enderecoEscolhidoo');
-//TODO quando estiver adicionando um endereco e marcar como padrão
-    listEnderecos.remove(endereco);
 
-    endereco['padrao'] = true;
+    if(_temPadrao()){
 
-    if (listEnderecos[0]['padrao']){
-      if(listEnderecos[0] == enderecoEscolhidoo)
+      if(listEnderecos[0] == enderecoEscolhidoo || enderecoEscolhidoo == null)
         enderecoEscolhidoo = endereco;
 
       listEnderecos[0]['padrao'] = false;
-    }else if(enderecoEscolhidoo == null){
-      enderecoEscolhidoo = endereco;
+    }else{
+      if(enderecoEscolhidoo == null){
+        enderecoEscolhidoo = endereco;
+      }
+
     }
-  
+
+    endereco['padrao'] = true;
+
+    listEnderecos.remove(endereco);
     listEnderecos.insert(0, endereco);
 
     Firestore.instance
@@ -131,9 +132,7 @@ abstract class _EnderecoBase with Store {
 
   @action
   void removerPadrao(Map<dynamic, dynamic> endereco) {
-    print('Remover Padrão: $endereco');
-    print('Remover Padrão (escolhidoo): $enderecoEscolhidoo');
-
+  
     if(endereco == enderecoEscolhidoo)
       enderecoEscolhidoo = null;
 
@@ -157,4 +156,13 @@ abstract class _EnderecoBase with Store {
       enderecoEscolhidoo = null;
   }
 
+  bool _temPadrao(){
+    if(listEnderecos.isEmpty){
+      return false;
+    }else if(listEnderecos[0]['padrao']){
+      return true;
+    }
+
+    return false;
+  }
 }

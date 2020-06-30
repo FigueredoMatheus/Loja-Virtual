@@ -34,7 +34,12 @@ class EnderecosScreen extends StatelessWidget {
             Observer(builder: (_) {
               print("Lista de endereços(EnderecoScreen: ${user.endereco.listEnderecos.length}");
                 if( user.endereco.listEnderecos.length == 0 ||  user.endereco.listEnderecos.length == null){
-                  return Center(child: Text('Nenhum endereço cadastrado.'));
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: Text('Nenhum endereço cadastrado.'),
+                    )
+                    );
                 }else{
                   return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

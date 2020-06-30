@@ -20,7 +20,7 @@ class EnderecoTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            endereco['padrao'] ?    Container(
+            endereco['padrao'] ? Container(
               //height: 15,
               //width: 40,
               color: Colors.red[200],
@@ -29,7 +29,7 @@ class EnderecoTile extends StatelessWidget {
                 style: TextStyle(color: Colors.black, fontSize: 10),
                 textAlign: TextAlign.center,
               ),
-            ) : SizedBox(height: 15,),
+            ) : SizedBox(height: 10,),
           
             Padding(
               padding: const EdgeInsets.only(top: 8, left: 8.0),
