@@ -15,7 +15,7 @@ class EnderecoTile extends StatelessWidget {
       shadowColor: Colors.grey,
       elevation: 5,
       child: Container(
-        padding: EdgeInsets.only(left: 5),
+        padding: EdgeInsets.only(right: 5),
         width: 350,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +40,7 @@ class EnderecoTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 8,left: 8.0),
+                padding: const EdgeInsets.only(top: 8, left: 13.0),
                 child: Text('Rua: ${endereco['rua']}'),
               ),
               !isEnderecoCarrinho
@@ -56,27 +56,27 @@ class EnderecoTile extends StatelessWidget {
                     ),
             ]),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 13.0),
               child: Text('Bairro: ${endereco['bairro']}'),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
+              padding: const EdgeInsets.only(top: 8, left: 13.0),
               child: Text('Cidade: ${endereco['cidade']}'),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
+              padding: const EdgeInsets.only(top: 8, left: 13.0),
               child: Text('Estado: ${endereco['estado']}'),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
+              padding: const EdgeInsets.only(top: 8, left: 13.0),
               child: Text('Número: ${endereco['numero']}'),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
+              padding: const EdgeInsets.only(top: 8, left: 13.0),
               child: Text('CEP: ${endereco['cep']}'),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8.0, left: 8),
+              padding: const EdgeInsets.only(top: 8, bottom: 8.0, left: 13),
               child: Text('Complemento: ${endereco['complemento']}'),
             ),
             !isEnderecoCarrinho
