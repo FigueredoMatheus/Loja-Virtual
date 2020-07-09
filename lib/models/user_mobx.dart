@@ -13,21 +13,7 @@ part 'user_mobx.g.dart';
 class UserMobx = _UserMobx with _$UserMobx;
 
 abstract class _UserMobx extends ChangeNotifier with Store{
-
-/*
- @override
-  void addListener(listener) {
-    super.addListener(listener);
-    _loadCurrentUser();
-  }
- */
-  /*
-  _UserMobx() {
-    _loadCurrentUser();
-    print("Saiu CurrentUser");
-  }
-   */
-
+  
   @observable
   PedidosMobx pedidos;
 

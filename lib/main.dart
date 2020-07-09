@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual2/models/carrinho_mobx.dart';
-import 'package:lojavirtual2/models/pedidos_mobx.dart';
 import 'package:lojavirtual2/screens/home_screen.dart';
-import 'package:lojavirtual2/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'models/user_mobx.dart';

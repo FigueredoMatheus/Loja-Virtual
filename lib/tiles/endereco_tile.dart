@@ -10,7 +10,7 @@ class EnderecoTile extends StatelessWidget {
   EnderecoTile(this.user, this.endereco, this.isEnderecoCarrinho);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Card(
       shadowColor: Colors.grey,
       elevation: 5,
@@ -19,24 +19,44 @@ class EnderecoTile extends StatelessWidget {
         width: 350,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            endereco['padrao'] ? Container(
-              //height: 15,
-              //width: 40,
-              color: Colors.red[200],
-              child: Text(
-                "Padrão",
-                style: TextStyle(color: Colors.black, fontSize: 10),
-                textAlign: TextAlign.center,
+            endereco['padrao']
+                ? Container(
+                    height: 15,
+                    width: 40,
+                    color: Colors.red[200],
+                    child: Text(
+                      "Padrão",
+                      style: TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                : SizedBox(
+                    height: 0,
+                  ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 8,left: 8.0),
+                child: Text('Rua: ${endereco['rua']}'),
               ),
-            ) : SizedBox(height: 10,),
-          
+              !isEnderecoCarrinho
+                  ? IconButton(
+                      alignment: Alignment.topRight,
+                      icon: Icon(Icons.more_vert),
+                      onPressed: () {
+                        _bottomSheet(context);
+                      },
+                    )
+                  : SizedBox(
+                      height: 1,
+                    ),
+            ]),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
-              child: Text('Rua: ${endereco['rua']}'),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8.0),
+              padding: const EdgeInsets.only(left: 8.0),
               child: Text('Bairro: ${endereco['bairro']}'),
             ),
             Padding(
@@ -56,36 +76,22 @@ class EnderecoTile extends StatelessWidget {
               child: Text('CEP: ${endereco['cep']}'),
             ),
             Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8.0, left: 8),
-                    child: Text('Complemento: ${endereco['complemento']}'),
-                  ),
-                  
-            !isEnderecoCarrinho ? Center(
-              child: SizedBox(
-                
-                child: RaisedButton(
-                  onPressed: () {
-                    _bottomSheet(context);
-                  },
-                  color: Colors.black,
-                  child: Text('Click',
-                      style: TextStyle(
-                        color: Colors.white,
-                      )),
-                ),
-              ),
-            )
-            : FlatButton(
-              padding: EdgeInsets.zero,
-              onPressed: (){
-                 user.endereco.enderecoEscolhidoo = endereco;
-                 Navigator.pop(context);
-              },
-              child: Text(
-                'Selecionar',
-                style: TextStyle(color: Colors.blue)
-                ),
+              padding: const EdgeInsets.only(top: 8, bottom: 8.0, left: 8),
+              child: Text('Complemento: ${endereco['complemento']}'),
             ),
+            !isEnderecoCarrinho
+                ? SizedBox(
+                    height: 0,
+                  )
+                : FlatButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      user.endereco.enderecoEscolhidoo = endereco;
+                      Navigator.pop(context);
+                    },
+                    child: Text('Selecionar',
+                        style: TextStyle(color: Colors.blue)),
+                  ),
           ],
         ),
       ),
@@ -97,7 +103,7 @@ class EnderecoTile extends StatelessWidget {
         context: context,
         builder: (context) {
           return BottomSheet(
-            onClosing: (){},
+            onClosing: () {},
             builder: (context) {
               return Container(
                 height: 200,
@@ -105,51 +111,54 @@ class EnderecoTile extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                     FlatButton(
+                    FlatButton(
                       child: Text(
                         "Editar",
                         style: TextStyle(color: Colors.red, fontSize: 15.0),
                       ),
                       onPressed: () {
                         Navigator.pop(context);
-                        
-                        Navigator.push(context, 
-                          MaterialPageRoute(builder: (context ) => 
-                            AddEnderecoScreen(endereco: endereco,))
-                        );
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddEnderecoScreen(
+                                      endereco: endereco,
+                                    )));
                       },
                     ),
-
-                    Divider(color: Colors.black,),
-
+                    Divider(
+                      color: Colors.black,
+                    ),
                     FlatButton(
                       child: Text(
                         "Excluir",
                         style: TextStyle(color: Colors.red, fontSize: 15.0),
                       ),
                       onPressed: () {
-                         user.endereco.excluirEndereco(endereco);
+                        user.endereco.excluirEndereco(endereco);
                         Navigator.pop(context);
                       },
                     ),
-          
-                    Divider(color: Colors.black,),
-
+                    Divider(
+                      color: Colors.black,
+                    ),
                     FlatButton(
                         child: Text(
-                          endereco['padrao'] ? "Remover padrão": "Definir como padrão",
+                          endereco['padrao']
+                              ? "Remover padrão"
+                              : "Definir como padrão",
                           style: TextStyle(color: Colors.red, fontSize: 15.0),
                         ),
                         onPressed: () {
-                          if(endereco['padrao']){
-                             user.endereco.removerPadrao(endereco);
-                          }else{
-                             user.endereco.definirPadrao(endereco);
+                          if (endereco['padrao']) {
+                            user.endereco.removerPadrao(endereco);
+                          } else {
+                            user.endereco.definirPadrao(endereco);
                           }
-                          
+
                           Navigator.pop(context);
-                        }
-                    )
+                        })
                   ],
                 ),
               );
