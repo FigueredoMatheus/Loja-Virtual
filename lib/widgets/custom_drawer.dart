@@ -18,12 +18,13 @@ class CustomDrawer extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          //Verificar se esse list funciona
+          List:[
             Color.fromARGB(240, 255, 122, 173),
             Color.fromARGB(255, 245, 222, 179),
           ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
         ),
       ),
     );
