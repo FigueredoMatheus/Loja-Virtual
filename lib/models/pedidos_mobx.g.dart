@@ -52,7 +52,7 @@ mixin _$PedidosMobx on _PedidosMobxBase, Store {
   @override
   String toString() {
     return '''
-listPedidos: ${listPedidos}
+listPedidos: $listPedidos
     ''';
   }
 }

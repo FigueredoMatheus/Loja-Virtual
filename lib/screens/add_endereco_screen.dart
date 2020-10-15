@@ -190,7 +190,7 @@ class _AddEnderecoScreenState extends State<AddEnderecoScreen> {
                           keyboardType: TextInputType.number,
                           // style: TextStyle(color: Colors.black, fontSize: 20),
                           inputFormatters: [
-                            WhitelistingTextInputFormatter.digitsOnly
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
                         ),
                       ),
@@ -218,7 +218,7 @@ class _AddEnderecoScreenState extends State<AddEnderecoScreen> {
                           keyboardType: TextInputType.number,
                           //style: TextStyle(color: Colors.black, fontSize: 20),
                           inputFormatters: [
-                            WhitelistingTextInputFormatter.digitsOnly
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
                         ),
                       )

@@ -205,14 +205,14 @@ mixin _$UserMobx on _UserMobx, Store {
   @override
   String toString() {
     return '''
-pedidos: ${pedidos},
-endereco: ${endereco},
-firebaseUser: ${firebaseUser},
-userData: ${userData},
-isLoading: ${isLoading},
-getIsLoading: ${getIsLoading},
-isLoggedIn: ${isLoggedIn},
-userNome: ${userNome}
+pedidos: $pedidos,
+endereco: $endereco,
+firebaseUser: $firebaseUser,
+userData: $userData,
+isLoading: $isLoading,
+getIsLoading: $getIsLoading,
+isLoggedIn: $isLoggedIn,
+userNome: $userNome
     ''';
   }
 }

@@ -134,8 +134,8 @@ mixin _$Endereco on _EnderecoBase, Store {
   @override
   String toString() {
     return '''
-listEnderecos: ${listEnderecos},
-enderecoEscolhidoo: ${enderecoEscolhidoo}
+listEnderecos: $listEnderecos,
+enderecoEscolhidoo: $enderecoEscolhidoo
     ''';
   }
 }

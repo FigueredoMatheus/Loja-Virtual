@@ -107,11 +107,11 @@ mixin _$GenericsMobx on _GenericsMobx, Store {
   @override
   String toString() {
     return '''
-preco: ${preco},
-genericBool: ${genericBool},
-medidaOp: ${medidaOp},
-getPreco: ${getPreco},
-medida: ${medida}
+preco: $preco,
+genericBool: $genericBool,
+medidaOp: $medidaOp,
+getPreco: $getPreco,
+medida: $medida
     ''';
   }
 }

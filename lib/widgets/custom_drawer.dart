@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:lojavirtual2/models/carrinho_mobx.dart';
 import 'package:lojavirtual2/models/user_mobx.dart';
 import 'package:lojavirtual2/screens/login_screen.dart';
 import 'package:lojavirtual2/tiles/drawer_tile.dart';

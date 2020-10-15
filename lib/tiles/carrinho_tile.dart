@@ -96,7 +96,7 @@ class CarrinhoTile extends StatelessWidget {
                                     color: Colors.black, fontSize: 15),
                                 inputFormatters: [
                                   LengthLimitingTextInputFormatter(3), //Definindo a quantidade de caractere
-                                  WhitelistingTextInputFormatter.digitsOnly
+                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                                 ],
                               ),
                             ),
