@@ -21,7 +21,11 @@ class EnderecoTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            endereco['padrao']
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                endereco['padrao']
                 ? Container(
                     height: 15,
                     width: 40,
@@ -33,28 +37,30 @@ class EnderecoTile extends StatelessWidget {
                     ),
                   )
                 : SizedBox(
-                    height: 0,
+                    height: 15,
                   ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 8, left: 13.0),
-                child: Text('Rua: ${endereco['rua']}'),
-              ),
+              
               !isEnderecoCarrinho
-                  ? IconButton(
-                      alignment: Alignment.topRight,
+                  ? Container(
+                    child: IconButton(
+                      padding: EdgeInsets.all(0),
                       icon: Icon(Icons.more_vert),
                       onPressed: () {
                         _bottomSheet(context);
                       },
                     )
+                  )
+                  
                   : SizedBox(
-                      height: 1,
+                      height: 0,
                     ),
             ]),
+
+            Padding(
+                padding: const EdgeInsets.only(bottom: 8, left: 13.0),
+                child: Text('Rua: ${endereco['rua']}'),
+              ),
+
             Padding(
               padding: const EdgeInsets.only(left: 13.0),
               child: Text('Bairro: ${endereco['bairro']}'),

@@ -320,21 +320,21 @@ mixin _$CarrinhoMobx on _CarrinhoMobx, Store {
   @override
   String toString() {
     return '''
-pedidoValido: ${pedidoValido},
-status: ${status},
-updatePreco: ${updatePreco},
-listProdutosCarrinho: ${listProdutosCarrinho},
-user: ${user},
-desconto: ${desconto},
-entrega: ${entrega},
-subtotal: ${subtotal},
-total: ${total},
-isLoading: ${isLoading},
-getDesconto: ${getDesconto},
-getEntrega: ${getEntrega},
-getSubtotal: ${getSubtotal},
-getTotal: ${getTotal},
-getIsLoading: ${getIsLoading}
+pedidoValido: $pedidoValido,
+status: $status,
+updatePreco: $updatePreco,
+listProdutosCarrinho: $listProdutosCarrinho,
+user: $user,
+desconto: $desconto,
+entrega: $entrega,
+subtotal: $subtotal,
+total: $total,
+isLoading: $isLoading,
+getDesconto: $getDesconto,
+getEntrega: $getEntrega,
+getSubtotal: $getSubtotal,
+getTotal: $getTotal,
+getIsLoading: $getIsLoading
     ''';
   }
 }
